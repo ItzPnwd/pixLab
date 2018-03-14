@@ -60,6 +60,48 @@ public class IntArrayWorker
         count++;
       }
     }
+    }
+  
+  public int getCount(int finding)
+  {
+    int count = 0;
+    for (int row = 0; row < matrix.length; row++)
+    {
+      for (int col = 0; col < matrix[0].length; col++)
+      {
+        if(matrix[row][col] == finding)
+        {
+            count++;
+        }
+      }
+    }
+    return count;
+  }
+  
+  public int getLargest()
+  {
+    int largest = matrix[0][0];
+    for (int row = 0; row < matrix.length; row++)
+    {
+      for (int col = 0; col < matrix[0].length; col++)
+      {
+        if(matrix[row][col] >= largest)
+        {
+            largest = matrix[row][col];
+        }
+      }
+    }
+    return largest;
+  }
+  
+  public int getColTotal(int col)
+  {
+      int total = 0;
+      for (int row = 0; row < matrix.length; row++)
+      {
+          total += matrix[row][col];
+      }
+      return total;
   }
   
   /**
