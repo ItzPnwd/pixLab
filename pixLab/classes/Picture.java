@@ -131,19 +131,37 @@ public class Picture extends SimplePicture
   }
   
   /** Method to set the picture to a gray scale */
-  public void greyScale()
+  public void grayScale()
   {
     Pixel[][] pixels = this.getPixels2D();
     for (Pixel[] rowArray : pixels)
     {
       for (Pixel pixelObj : rowArray)
       {
-        double grey = pixelObj.getAverage();
-        pixelObj.setRed(Math.round(grey));
-        pixelObj.setGreen(grey);
-        pixelObj.setBlue(grey);
+        int gray = (int)pixelObj.getAverage();//changes to int before it is stored
+        pixelObj.setRed(Math.round(gray));
+        pixelObj.setGreen(gray);
+        pixelObj.setBlue(gray);
       }
     }
+  }
+  
+  public void fixUnderwater()
+  {
+     Pixel[][] pixels = this.getPixels2D();
+    for (Pixel[] rowArray : pixels)
+    {
+      for (Pixel pixelObj : rowArray)
+      {
+        int setRed = (pixelObj.getRed() * 3); //r =155
+        pixelObj.setRed(setRed);
+        int setGreen  = (int)(pixelObj.getGreen() /1.45); //g = 85
+        pixelObj.setGreen(setGreen);
+        int setBlue = (int)(pixelObj.getBlue() /1.45); //b = 41
+        pixelObj.setBlue(setBlue);
+      }
+    }
+    
   }
   
   /** Method that mirrors the picture around a 
