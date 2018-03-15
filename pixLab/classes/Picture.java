@@ -98,6 +98,54 @@ public class Picture extends SimplePicture
     }
   }
   
+  /** Method to set everything but blue to zero */
+  public void keepOnlyBlue()
+  {
+    Pixel[][] pixels = this.getPixels2D();
+    for (Pixel[] rowArray : pixels)
+    {
+      for (Pixel pixelObj : rowArray)
+      {
+        pixelObj.setRed(0);
+        pixelObj.setGreen(0);
+      }
+    }
+  }
+  
+  /** Method to negate the picture */
+  public void negate()
+  {
+    Pixel[][] pixels = this.getPixels2D();
+    for (Pixel[] rowArray : pixels)
+    {
+      for (Pixel pixelObj : rowArray)
+      {
+        int red = Math.abs(pixelObj.getRed()-255);
+        int green = Math.abs(pixelObj.getGreen()-255);
+        int blue = Math.abs(pixelObj.getBlue()-255);
+        pixelObj.setRed(red);
+        pixelObj.setGreen(green);
+        pixelObj.setBlue(blue);
+      }
+    }
+  }
+  
+  /** Method to set the picture to a gray scale */
+  public void greyScale()
+  {
+    Pixel[][] pixels = this.getPixels2D();
+    for (Pixel[] rowArray : pixels)
+    {
+      for (Pixel pixelObj : rowArray)
+      {
+        double grey = pixelObj.getAverage();
+        pixelObj.setRed(Math.round(grey));
+        pixelObj.setGreen(grey);
+        pixelObj.setBlue(grey);
+      }
+    }
+  }
+  
   /** Method that mirrors the picture around a 
     * vertical mirror in the center of the picture
     * from left to right */
@@ -225,7 +273,7 @@ public class Picture extends SimplePicture
   {
     Picture beach = new Picture("beach.jpg");
     beach.explore();
-    beach.zeroBlue();
+    beach.keepOnlyBlue();
     beach.explore();
   }
   
