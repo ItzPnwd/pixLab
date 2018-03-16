@@ -62,6 +62,15 @@ public class PictureTester
     caterpillar.explore();
   }
   
+  /** Method to test mirrorVerticalRightToLeft */
+  public static void testMirrorVerticalRTL()
+  {
+    Picture caterpillar = new Picture("caterpillar.jpg");
+    caterpillar.explore();
+    caterpillar.mirrorVerticalRightToLeft();
+    caterpillar.explore();
+  }
+  
   /** Method to test mirrorTemple */
   public static void testMirrorTemple()
   {
@@ -94,14 +103,15 @@ public class PictureTester
     // uncomment a call here to run a test
     // and comment out the ones you don't want
     // to run
-    //testZeroBlue();
-    //testKeepOnlyBlue();
-    //testKeepOnlyRed();
-    //testKeepOnlyGreen();
-    //testNegate();
-    //testGrayscale();
-    testFixUnderwater();
+    //testZeroBlue(); //Done
+    //testKeepOnlyBlue(); //Done
+    //testKeepOnlyRed(); //Done
+    //testKeepOnlyGreen(); //Done
+    //testNegate(); /Done
+    //testGrayscale(); //Done
+    //testFixUnderwater(); //Done
     //testMirrorVertical();
+    testMirrorVerticalRTL();
     //testMirrorTemple();
     //testMirrorArms();
     //testMirrorGull();

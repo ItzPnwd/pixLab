@@ -146,6 +146,7 @@ public class Picture extends SimplePicture
     }
   }
   
+  /** VV NEED TO COME BACK TO THIS ANNOYING METHOD VV */
   public void fixUnderwater()
   {
      Pixel[][] pixels = this.getPixels2D();
@@ -153,12 +154,29 @@ public class Picture extends SimplePicture
     {
       for (Pixel pixelObj : rowArray)
       {
-        int setRed = (pixelObj.getRed() * 3); //r =155
-        pixelObj.setRed(setRed);
-        int setGreen  = (int)(pixelObj.getGreen() /1.45); //g = 85
-        pixelObj.setGreen(setGreen);
-        int setBlue = (int)(pixelObj.getBlue() /1.45); //b = 41
-        pixelObj.setBlue(setBlue);
+        int getRed = pixelObj.getRed();
+        int getGreen = pixelObj.getGreen();
+        int getBlue = pixelObj.getBlue();
+        boolean red = getRed <= 22;
+        boolean green = getGreen > 150;
+        boolean blue = getBlue >= 163;
+        if(red && green && blue)
+        {
+            int setRed = (int)(getRed * 1.65); //r = 20
+            pixelObj.setRed(setRed);
+            int setGreen  = (int)(getGreen / 1.65); //g = 100
+            pixelObj.setGreen(setGreen);
+            int setBlue = (int)(getBlue * 1.19); //b = 215
+            pixelObj.setBlue(setBlue);
+        }
+        else{  
+            int setRed = (int)(getRed * 1.45); //r =155
+            pixelObj.setRed(setRed);
+            int setGreen  = (int)(getGreen / 2.75); //g = 85
+            pixelObj.setGreen(setGreen);
+            int setBlue = (int)(getBlue /1.43); //b = 41
+            pixelObj.setBlue(setBlue);
+        }
       }
     }
     
@@ -168,6 +186,26 @@ public class Picture extends SimplePicture
     * vertical mirror in the center of the picture
     * from left to right */
   public void mirrorVertical()
+  {
+    Pixel[][] pixels = this.getPixels2D();
+    Pixel leftPixel = null;
+    Pixel rightPixel = null;
+    int width = pixels[0].length;
+    for (int row = 0; row < pixels.length; row++)
+    {
+      for (int col = 0; col < width / 2; col++)
+      {
+        leftPixel = pixels[row][col];
+        rightPixel = pixels[row][width - 1 - col];
+        rightPixel.setColor(leftPixel.getColor());
+      }
+    } 
+  }
+  
+  /** Method that mirrors the picture around a 
+    * vertical mirror in the center of the picture
+    * from left to right */
+  public void mirrorVerticalRightToLeft()
   {
     Pixel[][] pixels = this.getPixels2D();
     Pixel leftPixel = null;
