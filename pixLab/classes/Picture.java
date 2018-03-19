@@ -157,24 +157,24 @@ public class Picture extends SimplePicture
         int getRed = pixelObj.getRed();
         int getGreen = pixelObj.getGreen();
         int getBlue = pixelObj.getBlue();
-        boolean red = getRed <= 22;
-        boolean green = getGreen > 150;
+        boolean red = getRed <= 28;
+        boolean green = getGreen > 160;
         boolean blue = getBlue >= 163;
         if(red && green && blue)
         {
-            int setRed = (int)(getRed * 1.65); //r = 20
+            int setRed = 0; //r = 20
             pixelObj.setRed(setRed);
-            int setGreen  = (int)(getGreen / 1.65); //g = 100
+            int setGreen  = (int)(getGreen / 1.95); //g = 100
             pixelObj.setGreen(setGreen);
-            int setBlue = (int)(getBlue * 1.19); //b = 215
+            int setBlue = (int)(getBlue * 0.99); //b = 215
             pixelObj.setBlue(setBlue);
         }
         else{  
-            int setRed = (int)(getRed * 1.45); //r =155
+            int setRed = (int)(getRed * 2.45); //r =155
             pixelObj.setRed(setRed);
-            int setGreen  = (int)(getGreen / 2.75); //g = 85
+            int setGreen  = (int)(getGreen / 1.45); //g = 85
             pixelObj.setGreen(setGreen);
-            int setBlue = (int)(getBlue /1.43); //b = 41
+            int setBlue = (int)(getBlue /1.45); //b = 41
             pixelObj.setBlue(setBlue);
         }
       }
@@ -204,7 +204,7 @@ public class Picture extends SimplePicture
   
   /** Method that mirrors the picture around a 
     * vertical mirror in the center of the picture
-    * from left to right */
+    * from right to left */
   public void mirrorVerticalRightToLeft()
   {
     Pixel[][] pixels = this.getPixels2D();
@@ -217,10 +217,50 @@ public class Picture extends SimplePicture
       {
         leftPixel = pixels[row][col];
         rightPixel = pixels[row][width - 1 - col];
-        rightPixel.setColor(leftPixel.getColor());
+        leftPixel.setColor(rightPixel.getColor());
       }
     } 
   }
+ 
+  /** Method that mirrors the picture around a 
+    * horizontal mirror in the center of the picture
+    */
+  public void mirrorHorizontal()
+  {
+    Pixel[][] pixels = this.getPixels2D();
+    Pixel topPixel = null;
+    Pixel bottomPixel = null;
+    int hight = pixels.length;
+    for (int row = 0; row < hight; row++)
+    {
+      for (int col = 0; col < pixels[0].length; col++)
+      {
+        topPixel = pixels[row][col];
+        bottomPixel = pixels[hight - 1 - row][col];
+        bottomPixel.setColor(topPixel.getColor());
+      }
+    } 
+  } 
+  
+  /** Method that mirrors the picture around a 
+    * horizontal mirror in the center of the picture
+    * from bottom to top */
+  public void mirrorHorizontalBtoT()
+  {
+    Pixel[][] pixels = this.getPixels2D();
+    Pixel topPixel = null;
+    Pixel bottomPixel = null;
+    int hight = pixels.length;
+    for (int row = 0; row < hight; row++)
+    {
+      for (int col = 0; col < pixels[0].length; col++)
+      {
+        topPixel = pixels[row][col];
+        bottomPixel = pixels[hight - 1 - row][col];
+        topPixel.setColor(bottomPixel.getColor());
+      }
+    } 
+  } 
   
   /** Mirror just part of a picture of a temple */
   public void mirrorTemple()
