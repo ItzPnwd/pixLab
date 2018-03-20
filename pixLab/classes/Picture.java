@@ -154,26 +154,15 @@ public class Picture extends SimplePicture
     {
       for (Pixel pixelObj : rowArray)
       {
+        int contrast = 4;
         int red = pixelObj.getRed();
-        int green = pixelObj.getGreen();
-        int blue = pixelObj.getBlue();
-        int red2, green2, blue2;
+        //int blue = pixelObj.getBlue();
+        //int green = pixelObj.getGreen();
+        //int aquaFilter = (blue + green) / 2;
         
-        if(red <= 28 && blue >= 150)
-        {
-            red2 = (int)(red * 5); 
-            green2 = (int)(green * 0.95); 
-            blue2 = (int)(blue * 1.05);    
-        }
-        else {
-            red2 = red; 
-            green2 = green;
-            blue2 = blue;   
-        }
-        
-        pixelObj.setRed(red2);
-        pixelObj.setGreen(green2);
-        pixelObj.setBlue(blue2);
+        pixelObj.setRed(contrast * red);
+        //pixelObj.setGreen((contrast * green - aquaFilter) + aquaFilter - (green * 3));
+        //pixelObj.setBlue((contrast * blue - aquaFilter) + aquaFilter - (blue * 3));
        }
       }
     }
