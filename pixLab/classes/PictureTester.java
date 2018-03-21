@@ -98,6 +98,14 @@ public class PictureTester
     temple.explore();
   }
   
+  public static void testMirrorArms()
+  {
+    Picture frosty = new Picture("snowman.jpg");
+    frosty.explore();
+    frosty.mirrorArms();
+    frosty.explore();
+  }
+  
   /** Method to test the collage method */
   public static void testCollage()
   {
@@ -131,9 +139,9 @@ public class PictureTester
     //testMirrorVertical();
     //testMirrorVerticalRTL();
     //testMirrorHorizontal();
-    testMirrorHorizontalBtoT();
+    //testMirrorHorizontalBtoT();
     //testMirrorTemple();
-    //testMirrorArms();
+    testMirrorArms();
     //testMirrorGull();
     //testMirrorDiagonal();
     //testCollage();
