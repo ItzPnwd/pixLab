@@ -154,33 +154,19 @@ public class Picture extends SimplePicture
     {
       for (Pixel pixelObj : rowArray)
       {
-        int getRed = pixelObj.getRed();
-        int getGreen = pixelObj.getGreen();
-        int getBlue = pixelObj.getBlue();
-        boolean red = getRed <= 28;
-        boolean green = getGreen > 160;
-        boolean blue = getBlue >= 163;
-        if(red && green && blue)
-        {
-            int setRed = 0; //r = 20
-            pixelObj.setRed(setRed);
-            int setGreen  = (int)(getGreen / 1.95); //g = 100
-            pixelObj.setGreen(setGreen);
-            int setBlue = (int)(getBlue * 0.99); //b = 215
-            pixelObj.setBlue(setBlue);
-        }
-        else{  
-            int setRed = (int)(getRed * 2.45); //r =155
-            pixelObj.setRed(setRed);
-            int setGreen  = (int)(getGreen / 1.45); //g = 85
-            pixelObj.setGreen(setGreen);
-            int setBlue = (int)(getBlue /1.45); //b = 41
-            pixelObj.setBlue(setBlue);
-        }
+        int contrast = 4;
+        int red = pixelObj.getRed();
+        //int blue = pixelObj.getBlue();
+        //int green = pixelObj.getGreen();
+        //int aquaFilter = (blue + green) / 2;
+        
+        pixelObj.setRed(contrast * red);
+        //pixelObj.setGreen((contrast * green - aquaFilter) + aquaFilter - (green * 3));
+        //pixelObj.setBlue((contrast * blue - aquaFilter) + aquaFilter - (blue * 3));
+       }
       }
     }
     
-  }
   
   /** Method that mirrors the picture around a 
     * vertical mirror in the center of the picture
