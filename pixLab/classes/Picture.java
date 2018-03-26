@@ -358,29 +358,45 @@ public class Picture extends SimplePicture
     this.write("collage.jpg");
   }
   
-  
+  //Note to myself** come back to this and use the negate to change to black,white and grey
+  //and try to find a similarity and make a edge detection through that
   /** Method to show large changes in color 
     * @param edgeDist the distance for finding edges
     */
   public void edgeDetection(int edgeDist)
   {
-    Pixel leftPixel = null;
+    Pixel mainPixel = null;
     Pixel rightPixel = null;
+    Pixel topPixel = null;
     Pixel[][] pixels = this.getPixels2D();
     Color rightColor = null;
+    Color topColor = null;
     for (int row = 0; row < pixels.length; row++)
     {
       for (int col = 0; 
            col < pixels[0].length-1; col++)
       {
-        leftPixel = pixels[row][col];
+        mainPixel = pixels[row][col];
         rightPixel = pixels[row][col+1];
         rightColor = rightPixel.getColor();
-        if (leftPixel.colorDistance(rightColor) > 
+        
+        if(row < 359)
+        {
+            topPixel = pixels[row+1][col];
+            topColor = topPixel.getColor();
+            if(mainPixel.colorDistance(topColor) > 
+                edgeDist)
+                {
+                    mainPixel.setColor(Color.BLACK);
+                }
+            }
+        
+        if (mainPixel.colorDistance(rightColor) > 
             edgeDist)
-          leftPixel.setColor(Color.BLACK);
+          mainPixel.setColor(Color.BLACK);
+        
         else
-          leftPixel.setColor(Color.WHITE);
+          mainPixel.setColor(Color.WHITE);
       }
     }
   }
